@@ -1,0 +1,20 @@
+<div id="heading">
+	<h1 class="display-2">URL Shortener</h1>
+</div>
+<div class="container">
+	<%= form_for @url,url: { action: "create", method: "post" } do |f| %>
+	  <div class="form-group">
+		  <%= label_tag(:label, "Add a url", id: 'url-label') %>
+		  <%= text_field_tag(:url, "", class:'form-control', required: true) %>
+	  </div>
+	  <%= submit_tag("Create", class: "btn btn-primary") %>
+	  <% if flash[:error].present? %>
+	  	<p class='flash-error'><%= flash[:error] %></p>
+	  <% end %>
+	  <% if flash[:notice].present? %>
+	  	<p> Copy this now </p>
+	  	<p class='flash-notice'><%= flash[:notice] %></p>
+	  <% end %>
+	<% end %>
+</div>
+
