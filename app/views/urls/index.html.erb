@@ -1,5 +1,5 @@
 <div id="heading">
-	<h1 class="display-2">URL Shortener</h1>
+	<h1 class="display-2" style="text-align: center;"> URL Shortener</h1>
 </div>
 <div class="container">
 	<%= form_for @url,url: { action: "create", method: "post" } do |f| %>
@@ -12,8 +12,10 @@
 	  	<p class='flash-error'><%= flash[:error] %></p>
 	  <% end %>
 	  <% if flash[:notice].present? %>
-	  	<p> Copy this now </p>
-	  	<p class='flash-notice'><%= flash[:notice] %></p>
+	  	<div style="margin-top: 20px; background-color: #f8f9fa; padding: 10px; border-radius: 2px;">
+		  	<h4> Shortened url </h4>
+		  	<p class='flash-notice'><%= flash[:notice] %></p>
+	   </div>
 	  <% end %>
 	<% end %>
 </div>
