@@ -6,7 +6,17 @@ class UrlsController < ApplicationController
 	end
 
 	def create
-		@url = Url.new(permitted_params)
+		uri = URI(permitted_params[:original_url])
+		path_split = uri.path.split("/")
+		
+		if  path_split[-1] == "prices"
+			@url = Url.find_or_create_by!(
+				short_url: path_split[1]
+				original_url: permitted_params[:original_url]
+			)
+		end
+
+		@url = Url.find_by(original_url: permitted_params[:original_url]) ? Url.find_by(original_url: permitted_params[:original_url]) : Url.new(permitted_params)
 
 		respond_to do |format|
 			if @url.save
