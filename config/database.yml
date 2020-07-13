@@ -7,17 +7,33 @@ default: &default
 development:
   <<: *default
   database: urls
-  username: admin
-  password: 
 
 test:
   <<: *default
   database: urls
-  username: admin
-  password:
 
 production:
   <<: *default
   database: urls
 
+# default: &default
+#   adapter: postgresql
+#   encoding: unicode
+#   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
+# development:
+#   <<: *default
+#   database: torn_trader_development
+
+# test:
+#   <<: *default
+#   database: torn_trader_test
+
+
+# production:
+#   <<: *default
+#   username: <%= ENV['DB_USERNAME'] %>
+#   password: <%= ENV['DB_PASSWORD'] %>
+#   database: torntrader_production
+#   host: <%= ENV['DB_HOST'] %>
+#   port: 5432

@@ -8,10 +8,10 @@ class UrlsController < ApplicationController
 		respond_to do |format|
 			if @url.save
 				format.html { redirect_to root_path, notice: "#{request.base_url + '/' + @url.short_url}" }
-	   	 	else
-	   	 		format.html { redirect_to root_path, notice: "Incorrect URL" }	
-	   	 	end
-   	 	end
+	   	else
+	   	 	format.html { redirect_to root_path, notice: "Incorrect URL" }	
+	   	end
+   	end
 	end
 
 	def show
