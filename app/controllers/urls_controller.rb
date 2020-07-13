@@ -1,18 +1,25 @@
 class UrlsController < ApplicationController
+	protect_from_forgery with: :null_session
+
 	def index
 		@url = Url.new
 	end
 
 	def create
 		@url = Url.new(permitted_params)
+
 		respond_to do |format|
 			if @url.save
-				format.html { redirect_to root_path, notice: "#{request.base_url + '/' + @url.short_url}" }
+				format.json { 
+					render json: { short_url: "#{request.base_url + '/' + @url.short_url}" }
+				}
 	   	else
-	   	 	format.html { redirect_to root_path, notice: "Incorrect URL" }	
+	   	 	format.json { 
+	   	 		render json: { short_url: "", error: "can't create" }
+	   	 	}	
 	   	end
    	end
-	end
+	end 
 
 	def show
 		@url = Url.where(short_url: params[:short_url])

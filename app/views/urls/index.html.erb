@@ -1,22 +1,9 @@
 <div id="heading">
-	<h1 class="display-2" style="text-align: center;"> URL Shortener</h1>
+	<h1 class="display-2" style="text-align: center;">URL Shortener</h1>
 </div>
-<div class="container">
-	<%= form_for @url,url: { action: "create", method: "post" } do |f| %>
-	  <div class="form-group">
-		  <%= label_tag(:label, "Add a url", id: 'url-label') %>
-		  <%= text_field_tag(:url, "", class:'form-control', required: true) %>
-	  </div>
-	  <%= submit_tag("Create", class: "btn btn-primary") %>
-	  <% if flash[:error].present? %>
-	  	<p class='flash-error'><%= flash[:error] %></p>
-	  <% end %>
-	  <% if flash[:notice].present? %>
-	  	<div style="margin-top: 20px; background-color: #f8f9fa; padding: 10px; border-radius: 2px;">
-		  	<h4> Shortened url </h4>
-		  	<p class='flash-notice'><%= flash[:notice] %></p>
-	   </div>
-	  <% end %>
-	<% end %>
+<div class="container h-100 w-100" style="height: 100vh">
+	<div style="display: flex; justify-content: 'center'; align-items: 'center'">
+		A basic url shortening app made for <a href="https://torntrader.com"> Torntrader.com </a>
+	</div>
 </div>
 
