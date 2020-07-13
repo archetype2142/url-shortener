@@ -6,15 +6,15 @@ default: &default
 
 development:
   <<: *default
-  database: urls
+  database: shorten_urls_development
 
 test:
   <<: *default
-  database: urls
+  database: shorten_urls_test
 
 production:
   <<: *default
-  database: urls
+  database: shorten_urls_production
 
 # default: &default
 #   adapter: postgresql
