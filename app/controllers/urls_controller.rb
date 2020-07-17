@@ -10,7 +10,7 @@ class UrlsController < ApplicationController
 		path_split = uri.path.split("/")
 		
 		if path_split[-1] == "prices"
-			@url = Url.find_or_create_by!(
+			@url = Url.find_or_create_by(
 				short_url: path_split[1],
 				original_url: permitted_params[:original_url]
 			)
