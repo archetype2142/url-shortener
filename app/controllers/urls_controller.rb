@@ -18,7 +18,6 @@ class UrlsController < ApplicationController
 			@url = Url.find_by(original_url: permitted_params[:original_url]) ? Url.find_by(original_url: permitted_params[:original_url]) : Url.new(permitted_params)
 		end
 
-
 		respond_to do |format|
 			if @url.save
 				format.json { 
@@ -35,10 +34,18 @@ class UrlsController < ApplicationController
 	def show
 		@url = Url.where(short_url: params[:short_url])
 		render template: '/urls/404' unless @url.size > 0
-		redirect_to @url[0].original_url if @url.size > 0
+		redirect_to generate_url(@url[0].original_url, params.except(:action, :controller, :short_url).to_unsafe_h) if @url.size > 0
 	end
 
+
 private
+
+	def generate_url(url, params = {})
+	  uri = URI(url)
+	  uri.query = params.to_query
+	  uri.to_s
+	end
+
 	def permitted_params
 	{
 		original_url: sanitize(params[:url]),
